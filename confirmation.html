@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SONAR | Thank You</title>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Montserrat Font (Medium 500, Semibold 600, and Bold 700) --><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Montserrat globally and set default weight to Medium (500) to the entire HTML structure */
+        html {
+            scroll-behavior: smooth;
+        }
+        html, body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500; /* Medium */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            line-height: 1.5; /* Setting global line height to 1.5 */
+        }
+        /* Custom class for the bold weight when needed */
+        .font-bold-montserrat {
+            font-weight: 700; /* Bold */
+        }
+        
+        /* FIX: Enforce Montserrat font on ALL elements explicitly with highest specificity */
+        input, textarea, button, label, h1, h2, h3, p {
+            font-family: 'Montserrat', sans-serif !important;
+        }
+        
+        /* -------------------------------------------------------------------- */
+        /* PILL HEADER STYLES (Copied from Homepage for consistency)            */
+        /* -------------------------------------------------------------------- */
+        .pill-header {
+            font-family: 'Montserrat', sans-serif !important; /* Force font */
+            font-size: 16px; /* Fixed to 16px */
+            color: #737373;
+            background-color: #ebebeb;
+            font-weight: 600; /* Semibold 600 weight */
+            letter-spacing: 0; 
+            /* FIX: Removing text-transform: capitalize to allow manual case control */
+            text-transform: none; 
+            /* Tighter Padding */
+            padding-top: 0.375rem; /* py-1.5 */
+            padding-bottom: 0.375rem; /* py-1.5 */
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+        }
+
+        /* Footer-specific styles copied from index.html */
+        .footer-links-container {
+            gap: 2rem;
+        }
+
+        /* --- Custom Entrance Animation Styles --- */
+        .animate-enter {
+            /* Initial state: Invisible and moved down 20px */
+            opacity: 0;
+            transform: translateY(20px);
+            /* Transition properties */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        /* Final state: Fully visible and in original position */
+        .animate-enter.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom class for bold italics */
+        .font-bold-italic {
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        /* Custom CSS for Mobile Menu Transition (From Homepage) */
+        #mobile-menu {
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        #mobile-menu.open {
+            max-height: 500px; /* Sufficient height */
+            opacity: 1;
+        }
+
+        /* --- Custom CSS for Fixed Header from Contact Page Source (RE-APPLIED) --- */
+        
+        /* Nav Link and Button Text Sizing/Weight */
+        .nav-link {
+            font-size: 14px; /* Standard text-sm */
+            font-weight: 500;
+        }
+        .nav-btn-text {
+            font-size: 14px; /* Standard text-sm */
+            font-weight: 700;
+        }
+
+        /* Fixed Header Container Styling */
+        #fixed-header {
+            position: fixed;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            background-color: #ffffff; /* Solid White Background */
+            padding: 0;
+        }
+
+        /* Navigation Element Transformations (20% size reduction, 15% up, 10% horizontal shift) */
+        /* 1. Logo Positioning/Sizing */
+        #fixed-header .nav-logo {
+            transform: translateX(-10px) translateY(-15%);
+        }
+        /* 2. Links Group Positioning/Sizing */
+        #fixed-header .nav-links-group {
+            transform: translateX(10px) translateY(-15%);
+        }
+
+        /* 3. Base Size Reduction (20% less than original h-11 / 44px, then +10% increase) */
+        #fixed-header .nav-logo img {
+            height: 38.72px !important; /* 44px * 0.8 * 1.1 = 38.72px */
+            width: auto !important;
+        }
+        /* 4. Text/Button Size Reduction (20% less than original text-sm / 14px, then +10% increase) */
+        #fixed-header #desktop-menu a {
+            font-size: 12.32px; /* 14px * 0.8 * 1.1 = 12.32px */
+            font-weight: 500; /* MEDIUM Weight for Home, Blog, Newsletter */
+        }
+        /* Override for the specific elements to be BOLD */
+        #fixed-header #desktop-menu a.font-bold-montserrat {
+            font-weight: 700;
+        }
+        
+        #fixed-header button {
+            font-size: 12.32px; /* 14px * 0.8 * 1.1 = 12.32px */
+            font-weight: 700; /* Bold Weight for Book a call */
+            /* Adjust padding to fit the smaller font size proportionally */
+            padding-top: 6.6px !important; /* 6px * 1.1 = 6.6px */
+            padding-bottom: 6.6px !important;
+            padding-left: 17.6px !important; /* 16px * 1.1 = 17.6px (px-4) */
+            padding-right: 17.6px !important;
+        }
+
+        /* Nav Padding Adjustment (Final alignment for button bottom edge) */
+        #fixed-header nav {
+            padding-top: 12px; 
+            padding-bottom: 5px; /* Aligns with button bottom edge */
+        }
+        @media (min-width: 768px) {
+            #fixed-header nav {
+                padding-top: 24px;
+                padding-bottom: 8px; /* Aligns with button bottom edge */
+            }
+        }
+        
+        /* Header Spacer to reserve original space (LAST AGREED-UPON SIZE: 20% MORE) */
+        #header-spacer {
+            height: 168px; /* Increased 20% from 140px */
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            #header-spacer {
+                height: 217px; /* Increased 20% from 181px */
+            }
+        }
+        main {
+            padding-top: 0 !important;
+        }
+        
+        /* Mobile Menu Positioning from Contact Page */
+        #mobile-menu {
+            position: absolute;
+            top: 56px; /* Calculated height of fixed header on mobile (~56px) */
+            width: 100%;
+            z-index: 48;
+            padding-top: 2px;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        
+    </style>
+</head>
+<body class="text-gray-900 leading-normal">
+
+    <!-- Header Spacer (Guarantees content below retains its original vertical position) --><div id="header-spacer"></div>
+
+    <!-- Header/Navigation Bar (Fixed at the top, z-index 50) --><header id="fixed-header" style="background-color: #ffffff;">
+        <nav class="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between py-3 md:py-6">
+            
+            <!-- Logo (Shifted/Resized) --><a href="index.html" class="flex items-center nav-logo">
+                <img src="assets/images/landscape_logo_black.png" 
+                    alt="Sonar Logo" 
+                    class="h-11 w-auto rounded-md object-contain"
+                    onerror="this.onerror=null; this.src='https://placehold.co/100x44/000/fff?text=SONAR';"
+                />
+            </a>
+
+            <!-- Desktop Navigation Links (Shifted/Resized) --><div id="desktop-menu" class="hidden sm:flex items-center space-x-4 md:space-x-6 lg:space-x-8 text-gray-900 nav-link font-medium nav-links-group">
+                
+                <!-- Home (Medium Weight) --><a href="index.html" class="hover:text-gray-700 transition duration-150 nav-link">Home</a>
+                
+                <!-- Blog (Medium Weight - Inactive) --><a href="javascript:void(0)" class="hover:text-gray-700 transition duration-150 nav-link">Blog</a>
+                
+                <!-- Newsletter (Medium Weight - Inactive) --><a href="javascript:void(0)" class="hover:text-gray-700 transition duration-150 nav-link">Newsletter</a>
+                
+                <!-- Book a Call Button (Bold Weight) --><a href="booking_page.html"
+                    class="bg-black text-white nav-btn-text font-bold-montserrat py-2 px-6 rounded-lg shadow-md hover:bg-gray-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50">
+                    Book a call
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button --><button id="menu-toggle" class="sm:hidden text-gray-900 p-2 rounded-lg hover:bg-gray-100 transition duration-150 focus:outline-none">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Drawer (From Homepage) --><div id="mobile-menu" class="sm:hidden w-full bg-white shadow-xl z-40 border-t border-gray-100">
+        <div class="flex flex-col space-y-4 text-gray-900 nav-link font-medium">
+            <a href="index.html" class="hover:text-gray-700 transition duration-150 p-2 block w-full text-center">Home</a>
+            <a href="javascript:void(0)" class="hover:text-gray-700 transition duration-150 p-2 block w-full text-center">Blog</a>
+            <a href="javascript:void(0)" class="hover:text-gray-700 transition duration-150 p-2 block w-full text-center">Newsletter</a>
+            
+            <a href="booking_page.html"
+                class="bg-black text-white nav-btn-text font-bold-montserrat py-3 px-6 rounded-lg shadow-md hover:bg-gray-800 transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-opacity-50 mt-2 text-center">
+                Book a call
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content: THANK YOU Section --><main class="flex-grow flex justify-center items-center pt-24 md:pt-32 px-6 pb-24">
+        <div class="max-w-4xl w-full">
+
+            <!-- Thank You Message Block (Centered in viewport due to items-center on main) --><div class="text-center px-4 sm:px-12 lg:px-24">
+                
+                <!-- Headline: Set to inherit 500 weight, using leading-normal (1.5), and animated --><h1 id="headline" class="text-4xl sm:text-5xl text-gray-900 mb-6 leading-normal animate-enter">
+                    Thank You for<br>
+                    Booking Your Call!
+                </h1>
+
+                <!-- Subtext: Confirmation and Next Steps, using conditional rendering for two distinct layouts -->
+                <p id="subheading" class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto animate-enter">
+                    
+                    <!-- DESKTOP VERSION (Visible sm: and up) -->
+                    <span class="hidden sm:inline">
+                        A member of our team will contact you within 48 hours.<br>We look forward to talking to you!
+                    </span>
+
+                    <!-- MOBILE VERSION (Visible below sm:) -->
+                    <span class="sm:hidden">
+                        A member of our team will contact you within 48 hours. We look forward to<br>talking to you!
+                    </span>
+                </p>
+
+                <!-- Button to Go Home (Uses same styling as the old submit button, and animated) --><a href="index.html"
+                    id="returnButton"
+                    class="w-full max-w-md inline-flex items-center justify-center bg-black text-white font-bold-montserrat text-xl py-5 rounded-lg shadow-xl hover:bg-gray-800 transition duration-300 space-x-3 animate-enter">
+                    <span>Return to home</span>
+                    <!-- Right Arrow SVG Path --><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- START: FOOTER SECTION (COPIED FROM HOMEPAGE STRUCTURE) --><footer class="pt-10 pb-5 px-4 bg-[#ebebeb] mt-auto">
+        <!-- Main Footer Grid (Simplified grid for left-alignment) --><div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-900 p-4 md:p-8">
+
+            <!-- Column 1: Logo, Mission, Social, Connect & Navigate (All left-aligned) --><div class="space-y-4">
+                
+                <!-- Logo ONLY (Bigger: h-12) --><div class="flex items-center space-x-3 mb-6">
+                    <img src="assets/images/landscape_logo_black.png" 
+                            alt="Sonar Logo Rings" 
+                            class="h-12 w-auto object-contain"
+                            onerror="this.onerror=null; this.src='https://placehold.co/48x48/737373/ffffff?text=RINGS';">
+                </div>
+                
+                <h3 class="text-xl font-bold-montserrat leading-snug">Paid Ads that drive <span class="font-bold-italic">REAL</span> results</h3>
+                <!-- Mission statement with margin-bottom 8 (32px) --><p class="text-sm text-gray-600 mb-8">Built for local brick and mortar businesses.</p>
+
+                <!-- Social Icons (Reordered: X is last, using PNG) --><div class="flex space-x-4 pt-4 mb-8">
+                    <!-- Instagram --><a href="https://www.instagram.com/sonar_marketing?igsh=ZWdxazZkaHFkenFl" class="hover:opacity-75 transition duration-150" aria-label="Instagram">
+                        <img src="assets/icons/instagramicon.png" 
+                            alt="Instagram Icon" 
+                            class="h-6 w-6 flex-shrink-0 rounded-md"
+                            onerror="this.onerror=null; this.src='https://placehold.co/24x24/transparent/transparent?text=Ig';">
+                    </a>
+                    <!-- Facebook --><a href="https://www.facebook.com/share/1Ad24sGPum/" class="hover:opacity-75 transition duration-150" aria-label="Facebook">
+                        <img src="assets/icons/facebookicon.png" 
+                            alt="Facebook Icon" 
+                            class="h-6 w-6 flex-shrink-0 rounded-md"
+                            onerror="this.onerror=null; this.src='https://placehold.co/24x24/transparent/transparent?text=Fb';">
+                    </a>
+                    <!-- LinkedIn --><a href="https://www.linkedin.com/company/sonarmkt/" class="hover:opacity-75 transition duration-150" aria-label="LinkedIn">
+                        <img src="assets/icons/linkedinicon.png" 
+                            alt="LinkedIn Icon" 
+                            class="h-6 w-6 flex-shrink-0 rounded-md"
+                            onerror="this.onerror=null; this.src='https://placehold.co/24x24/transparent/transparent?text=In';">
+                    </a>
+                    <!-- X (Twitter) --><a href="javascript:void(0)" class="hover:opacity-75 transition duration-150" aria-label="X (Twitter)">
+                        <img src="assets/icons/xicon.png" 
+                            alt="X (Twitter) Icon" 
+                            class="h-6 w-6 flex-shrink-0 rounded-md"
+                            onerror="this.onerror=null; this.src='https://placehold.co/24x24/transparent/transparent?text=X';">
+                    </a>
+                </div>
+
+                <!-- Connect and Navigate Links (All left-aligned) --><div class="flex flex-col md:flex-row md:space-x-12 space-y-8 md:space-y-0">
+                    <!-- Column 2: Connect Links (Reordered: X is last, using current links) -->
+                    <div class="space-y-3">
+                        <h4 class="font-bold-montserrat uppercase tracking-wider text-sm mb-2">Connect</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li><a href="booking_page.html" class="hover:text-black transition">Book a call</a></li>
+                            <li><a href="https://www.instagram.com/sonar_marketing?igsh=ZWdxazZkaHFkenFl" class="hover:text-black transition">Instagram</a></li>
+                            <li><a href="https://www.facebook.com/share/1Ad24sGPum/" class="hover:text-black transition">Facebook</a></li>
+                            <li><a href="https://www.linkedin.com/company/sonarmkt/" class="hover:text-black transition">LinkedIn</a></li>
+                            <!-- X Link (Now last, ensuring inactive status) -->
+                            <li><a href="javascript:void(0)" class="hover:text-black transition">X</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Navigate Links (Parallel to Connect, reordered, ensuring inactive status) --><div class="space-y-3">
+                        <h4 class="font-bold-montserrat uppercase tracking-wider text-sm mb-2">Navigate</h4>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li><a href="index.html" class="hover:text-black transition">Home</a></li>
+                            <!-- Blog is now above Newsletter -->
+                            <li><a href="javascript:void(0)" class="hover:text-black transition">Blog</a></li>
+                            <li><a href="javascript:void(0)" class="hover:text-black transition">Newsletter</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Removed second column: md:col-span-2 --></div>
+
+    </footer>
+    <!-- END: FOOTER SECTION -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const headline = document.getElementById('headline');
+        const subheading = document.getElementById('subheading');
+        const returnButton = document.getElementById('returnButton');
+
+        // Function to start the main content animation
+        const startAnimation = () => {
+            // Animate Headline and Subheading immediately
+            headline.classList.add('active');
+            subheading.classList.add('active');
+
+            // Animate Button after 0.7 second delay
+            setTimeout(() => {
+                returnButton.classList.add('active');
+            }, 700);
+        };
+        
+        // Start the main content animation sequence
+        startAnimation();
+
+        // --- Mobile Menu Toggle Logic ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        if (menuToggle && mobileMenu) {
+            menuToggle.addEventListener('click', () => {
+                // Toggle the 'open' class for CSS transition (max-height/opacity)
+                mobileMenu.classList.toggle('open');
+                
+                // Toggle the visibility of the hamburger/close icons
+                hamburgerIcon.classList.toggle('hidden');
+                closeIcon.classList.toggle('hidden');
+            });
+        }
+    });
+</script>
+</body>
+</html>
