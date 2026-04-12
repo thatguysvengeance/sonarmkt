@@ -1,0 +1,1674 @@
+:root {
+    /* Colors - Strict Sonar Theme (White & Navy) */
+    --bg-dark: #ffffff;
+    /* Pure White Bg */
+    --bg-card: #ffffff;
+    /* White for panels */
+    --bg-card-hover: #ffffff;
+    /* White on hover for lift */
+    --primary: #111827;
+    /* Navy Text */
+    --text-muted: #4b5563;
+    /* Slightly lighter gray for body text */
+    /* All text Navyish */
+    --accent-blue: #111827;
+    --accent-dark-blue: #111827;
+    --border-color: rgba(17, 24, 39, 0.15);
+    /* Navy Border */
+
+    /* Fonts */
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Spacing */
+    --container-width: 1311px;
+}
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+.btn {
+    font-family: var(--font-heading);
+    font-weight: 500; /* Unboldened across all pages */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Utilities */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.gradient-text {
+    color: var(--primary);
+    font-weight: 500; /* Matching unbolded theme */
+}
+
+/* Scroll Animation Class */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-dash {
+    display: none;
+}
+
+section, .section {
+    padding: 90px 0;
+}
+
+.section-title {
+    font-size: 2.25rem; /* Reduced by 10% from 2.5rem */
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 500; /* Unboldened */
+}
+
+.section-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 auto 18px;
+    font-size: 0.934rem;
+    font-weight: 500;
+    text-align: center;
+    color: #ffffff;
+    background: var(--primary);
+    border-radius: 6px;
+    padding: 4.356px 13.2px 3.96px 13.2px;
+    pointer-events: none;
+    user-select: none;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+/* Process panel sizing only - scoped so ranking cards are unaffected */
+.process .grid.col-3 > * {
+    flex: 0 1 350px;
+    min-width: 280px;
+}
+
+/* Ranking cards - grow to fill the container evenly, 3-in-a-row */
+.ranking-cards > * {
+    flex: 1 1 300px;
+    min-width: 280px;
+}
+
+/* Services cards - equal sizing to prevent longer text stretching one card */
+.services .grid > * {
+    flex: 1 1 300px;
+    min-width: 280px;
+}
+
+/* Services cards - 25% less padding than the base 40px */
+.services .card {
+    padding: 30px;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex; /* Changed to flex for icon alignment */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px; /* Slightly increased padding */
+    background: transparent;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1.1rem; /* Increased size as requested */
+    letter-spacing: 0.01rem; /* Subtle breathing room */
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.btn:hover .btn-icon {
+    transform: translate(3px, -3px); /* Diagonally top-right */
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--bg-dark);
+    /* Navy text on white button */
+    border-color: var(--primary);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: var(--primary);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.btn-secondary {
+    background: #e2e8f0;
+    color: var(--primary);
+    border-color: #e2e8f0;
+}
+
+.btn-secondary:hover {
+    background: #cbd5e1;
+    color: var(--primary);
+}
+
+.btn-lg {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.85); /* Slightly transparent white */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 9px 0;
+    border-bottom: none; /* No solid border */
+}
+
+.navbar .logo img {
+    width: 140px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+}
+
+.nav-links a:not(.btn) {
+    font-size: 0.825rem;
+    font-weight: 500;
+    color: var(--primary);
+    position: relative;
+}
+
+/* Underline Animation */
+.nav-links a:not(.btn)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--primary);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:not(.btn):hover::after {
+    width: 100%;
+}
+
+.nav-links .btn {
+    padding: 9px 18px;
+    font-size: 0.9rem;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary);
+    margin: 5px 0;
+}
+
+/* Hero */
+.hero {
+    position: relative;
+    padding: 180px 0 90px;
+    text-align: center;
+    overflow: hidden;
+    background: var(--bg-dark);
+}
+
+/* Sonar Ripple Effect */
+.hero-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    animation: sonar-wave 8s linear infinite;
+    opacity: 0;
+}
+
+.ripple:nth-child(1) {
+    animation-delay: 0s;
+    width: 200px;
+    height: 200px;
+}
+
+.ripple:nth-child(2) {
+    animation-delay: 2s;
+    width: 200px;
+    height: 200px;
+}
+
+.ripple:nth-child(3) {
+    animation-delay: 4s;
+    width: 200px;
+    height: 200px;
+}
+
+.ripple:nth-child(4) {
+    animation-delay: 6s;
+    width: 200px;
+    height: 200px;
+}
+
+@keyframes sonar-wave {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0.5;
+        border-width: 4px;
+    }
+
+    100% {
+        width: 150vw;
+        height: 150vw;
+        opacity: 0;
+        border-width: 0;
+    }
+}
+
+.hero-title {
+    font-size: 3.375rem; /* Reduced by 10% from 3.75rem */
+    /* Reduced from 4rem to fit on 2 lines */
+    line-height: 1.1;
+    margin-bottom: 24px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 500; /* Unboldened from default h1 */
+}
+
+.hero-title .gradient-text {
+    font-weight: 500; /* Matching the unboldened title */
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+/* Cards */
+.card {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.card-icon {
+    width: 54px; /* Reduced by 10% from 60px */
+    height: 54px; /* Reduced by 10% from 60px */
+    margin: 0 auto 24px;
+    color: var(--primary);
+    opacity: 0.8;
+}
+
+.card-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: currentColor;
+    transition: all 0.5s ease;
+}
+
+/* Process section: no card border, circular icon border instead */
+.process .grid {
+    max-width: 1150px; /* Increased to accommodate 350px panels without wrapping */
+    margin: 0 auto;
+}
+
+.process .card {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    text-align: center;
+    padding-top: 0; /* Remove top padding so icon sits flush with the grid top */
+}
+
+.process .card-icon {
+    width: 85.5px; 
+    height: 85.5px;
+    border: 1.1px solid var(--border-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 19px; 
+}
+
+.service-card h3,
+.process-step h3 {
+    margin-bottom: 15px;
+    font-size: 1.425rem; /* 5% reduction from 1.5rem */
+}
+
+.process .service-card p {
+    font-size: 1.045rem; /* 5% reduction from 1.1rem */
+}
+
+/* The following were moved to .process-stack-container scoping */
+
+/* Scoped overrides for Google Ranking page panels */
+.ranking-cards .card {
+    padding: 30px; /* Reduced by 5% from 32px */
+}
+
+.ranking-cards .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.ranking-cards .card-icon {
+    width: 28px; /* Scaled down to match heading size */
+    height: 28px; /* Scaled down to match heading size */
+    margin: 0;
+    color: var(--primary);
+}
+
+.ranking-cards .service-card h3 {
+    font-size: 1.21rem; /* Reduced by 5% from 1.275rem */
+    margin-bottom: 0;
+}
+
+/* Process Stack Specifics - HIGHEST PRIORITY OVERRIDES */
+.process-stack-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    margin-top: 2rem !important;
+}
+
+/* Force visible panels */
+.process-stack-container .card.process-row {
+    width: 100% !important;
+    font-size: 0.9625em !important; /* 10% increase from 0.875em */
+    padding: 25px 44px 25px 18px !important; /* 10% increase from 23px/40px/16px */
+    background: #ffffff !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03) !important;
+    display: block !important;
+}
+
+.process-stack-container .card.process-row h3 {
+    font-size: 1.3rem !important; /* 10% increase from 1.18rem */
+}
+
+.process-stack-container .card.process-row p {
+    font-size: 1rem !important; /* 10% increase from 0.9rem */
+}
+
+.process-stack-container .card-icon {
+    width: 76px !important; /* 10% increase from 69px */
+    height: 76px !important; /* 10% increase from 69px */
+    padding: 15.5px !important; /* 10% increase from 14px */
+}
+
+.process-content {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+}
+
+/* Kill the stupid circles once and for all */
+.process-icon {
+    width: 23px !important; /* Increased by 15% from 20px */
+    height: 23px !important; /* Increased by 15% from 20px */
+    min-width: 23px !important;
+    flex-shrink: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--primary) !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.process-icon svg {
+    width: 100% !important;
+    height: 100% !important;
+    fill: currentColor !important;
+}
+
+.process-content p {
+    text-align: left !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 1.1rem !important; /* Increased by 15% from 0.95rem */
+    color: var(--text-muted) !important;
+    display: block !important;
+    line-height: 1.2 !important; /* Slightly more height for bigger text */
+}
+
+.process-content b {
+    color: var(--navy) !important;
+    font-weight: 700 !important;
+    margin-right: 6px !important;
+}
+
+/* Difference Section */
+.difference-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 990px;
+}.service-card p,
+.process-step p,
+.accordion-content p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+/* Process timeline CSS removed as it now shares .grid and .service-card styles */
+
+/* Difference Section */
+.difference-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 990px; /* Increased by 10% from 900px */
+    margin: 50px auto 0;
+    gap: 30px; /* Added gap for when they wrap */
+}
+
+.diff-card {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.diff-logo {
+    display: block;
+    margin: 0 auto 25px auto;
+    width: 153px;
+}
+
+.diff-card ul {
+    text-align: left;
+    width: 100%;
+    list-style: none; /* remove any default bullets */
+    padding: 0;
+}
+
+.competitors {
+    background: #f3f4f6; /* Neutral flat gray */
+    border: 1px solid #e5e7eb;
+    border-radius: 20px 0 0 20px;
+    padding: 50px 50px 50px 42px;
+    width: 45%;
+    position: relative;
+    z-index: 1;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+}
+
+.competitors h3 {
+    color: #64748b;
+    margin-bottom: 25px;
+    font-size: 1.38rem; /* Reduced by 10% from 1.53rem */
+    font-family: 'Outfit', sans-serif;
+    opacity: 0.8;
+    text-align: center;
+}
+
+.sonar {
+    background: #ffffff;
+    color: #111827;
+    border: 1px solid rgba(17, 24, 39, 0.1);
+    border-radius: 20px;
+    padding: 60px 42px;
+    width: 55%;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 15px 40px rgba(17, 24, 39, 0.1), 
+                0 0 40px rgba(34, 197, 94, 0.05); /* Softer shadow + Green tint */
+    margin-left: -40px; /* Asymmetric Overlap */
+}
+
+.sonar::before {
+    display: none;
+}
+
+.check-list li {
+    padding-left: 38px;
+    margin-bottom: 20px;
+    position: relative;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.competitors .check-list li {
+    color: #64748b;
+}
+
+.sonar .check-list li {
+    color: #111827;
+    font-size: 1.05rem; /* Slightly larger text on our side */
+}
+
+/* Custom Icons */
+.cross-list li::before {
+    content: ""; /* Remove text character */
+    position: absolute;
+    left: 0;
+    top: 4px; /* Better vertical alignment */
+    width: 20px;
+    height: 20px;
+    /* Cross stroke now a neutral grey #9ca3af */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.check-list-green li::before {
+    content: ""; /* Remove text character */
+    position: absolute;
+    left: 0;
+    top: 5px; /* Better vertical alignment for larger text */
+    width: 20px;
+    height: 20px;
+    /* Tick stroke now matches the #111827 text color */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111827' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* CTA Section */
+.cta-box {
+    padding: 0 20px; /* Vertical padding removed so it falls back to the .section 90px spacing */
+    text-align: center;
+    position: relative;
+    /* Removed background, border, shadow for 'no panel' look */
+}
+
+.cta-icon {
+    display: block;
+    margin: 0 auto 20px;
+    width: 130px;
+}
+
+.cta-title {
+    font-size: 2.7rem; /* Reduced by 10% from 3rem */
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.cta-preamble {
+    font-size: 44%;
+}
+
+.cta-subtitle {
+    font-size: 1.125rem;
+    margin: 0 auto 30px;
+    max-width: 600px;
+    color: var(--text-muted);
+}
+
+.cta-box p:not(.cta-subtitle) {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: var(--text-muted);
+}
+
+.booking-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 140px; /* Navbar height + breathing room */
+    padding-bottom: 90px;
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 16px;
+    font-weight: 700;
+}
+
+.booking-title {
+    font-size: 3.15rem; /* Reduced by 10% from 3.5rem */
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.booking-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    max-width: 500px;
+}
+
+.booking-guarantee {
+    margin-top: 40px;
+    display: flex;
+    gap: 30px;
+}
+
+.guarantee-item .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(17, 24, 39, 0.05);
+    /* Light navy tint */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.guarantee-item svg {
+    width: 24px;
+    height: 24px;
+    color: var(--primary);
+}
+
+/* Form Styles */
+.form-wrapper {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.booking-form .form-group {
+    margin-bottom: 20px;
+}
+
+.booking-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.booking-form input,
+.booking-form select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--primary);
+    background: #fff;
+    transition: 0.3s;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.1);
+}
+
+.full-width {
+    width: 100%;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.radio-group {
+    display: flex;
+    gap: 24px;
+    margin-top: 8px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    font-size: 0.9rem; /* 10% smaller */
+    cursor: pointer;
+    color: var(--primary);
+}
+
+.radio-label input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    vertical-align: middle;
+    accent-color: var(--primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.booking-form textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--primary);
+    background: #fff;
+    transition: 0.3s;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.booking-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.1);
+}
+
+/* FAQ Section - Scaled down 15% */
+.faq-section {
+    padding: 90px 0; /* from 100px, now standardized */
+    background: #ffffff;
+}
+
+.accordion {
+    max-width: 612px; /* reduced 10% from 680px */
+    margin: 0 auto;
+}
+
+.accordion-item {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 12px; /* from 15px */
+}
+
+.accordion-trigger {
+    width: 100%;
+    text-align: left;
+    padding: 19px 0; /* reduced 10% from 21px */
+    font-size: 1.045rem; /* reduced 5% from 1.1rem */
+    font-weight: 500;
+    font-family: var(--font-heading);
+    color: var(--primary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.accordion-trigger:hover {
+    opacity: 0.8;
+}
+
+.accordion-trigger .icon {
+    font-size: 1.235rem; /* reduced 5% from 1.3rem */
+    font-weight: 400;
+    transition: transform 0.3s;
+}
+
+.accordion-trigger.active .icon {
+    transform: rotate(45deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.accordion-content p {
+    padding-bottom: 19px; /* reduced 10% from 21px */
+    color: var(--text-muted);
+    font-size: 0.945rem; /* reduced 10% from 1.05rem */
+}
+
+/* Footer */
+.footer {
+    padding: 90px 0 40px;
+    margin-top: 0;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-dark);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: flex-start;
+    gap: 100px;
+    margin-bottom: 60px;
+    align-items: start;
+}
+
+.footer-logo {
+    margin-bottom: 30px;
+}
+
+.footer-headline {
+    font-size: 1.98rem; /* Reduced by 10% from 2.2rem */
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.footer-subtext {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.footer-col h3 {
+    font-size: 0.99rem; /* Reduced by 10% from 1.1rem */
+    margin-bottom: 24px;
+    color: var(--primary);
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    transition: 0.3s;
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+    opacity: 0.8;
+}
+
+.social-links svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.footer-links li {
+    margin-bottom: 16px;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+}
+
+.footer-bottom {
+    text-align: center;
+    color: var(--text-muted);
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8rem; /* 20% smaller than default 1rem */
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .container {
+        padding: 0 22px;
+    }
+
+    .hero-title {
+        font-size: 2.565rem; /* 5% reduction from 2.7rem base */
+    }
+    .hero-subtitle {
+        font-size: 1.187rem; /* 5% reduction from 1.25rem base */
+    }
+
+    .booking-grid,
+    .difference-grid,
+    .footer-content {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .process-timeline {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .process-step {
+        padding: 0;
+    }
+
+    /* Reset positioning for mobile & target correct pseudo-element */
+    .process-step:not(:last-child)::after {
+        position: static;
+        display: block;
+        margin: 20px auto 0;
+        transform: rotate(90deg);
+        text-align: center;
+        width: 100%;
+        /* Ensure centering works in block flow */
+        font-size: 2.5rem;
+        animation: pulse 1.5s infinite;
+        /* Keep animation */
+        right: auto;
+        top: auto;
+        /* Reset desktop positioning */
+    }
+
+    .process-step::after {
+        display: none;
+        /* Fallback cleanup */
+    }
+
+    /* Connect line hidden on mobile if it existed, simply stack steps */
+}
+
+/* Levitating Scroll Indicator */
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--primary); /* Navy color */
+    z-index: 999;
+    cursor: pointer;
+    animation: bounce 2s infinite ease-in-out;
+    opacity: 0.4;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.scroll-indicator svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+}
+
+.scroll-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 20px);
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, -10px);
+    }
+}
+
+/* Mobile Line Breaks */
+.mobile-br {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .card,
+    .diff-card h3 {
+        text-align: center;
+    }
+
+    /* Services and Process panels stay left-aligned on mobile */
+    .services .card,
+    .services .card h3,
+    .services .card p,
+    .process .card,
+    .process .card h3,
+    .process .card p {
+        text-align: left;
+    }
+
+    /* Reduce services and process panel text by ~10% total on mobile */
+    .services .card h3,
+    .process .card h3 {
+        font-size: 1.282rem; /* 10% reduction from 1.425rem */
+    }
+    .services .card p,
+    .process .card p {
+        font-size: 0.945rem; /* 10% reduction from 1.05rem */
+    }
+
+    /* Reduce differences panel texts by 10% on mobile */
+    .diff-card h3 {
+        font-size: 1.242rem; /* 10% reduction from 1.38rem */
+    }
+    .diff-card .check-list li {
+        font-size: 0.9rem; /* 10% reduction from 1.0rem */
+    }
+    .diff-card.sonar .check-list li {
+        font-size: 0.945rem; /* 10% reduction from 1.05rem */
+    }
+
+    /* Index CTA text adjustments on mobile */
+    .cta-preamble {
+        font-size: 53.2%; /* Another 10% increase */
+    }
+    .cta-subtitle {
+        font-size: 0.945rem; /* Exactly match services panel size */
+    }
+
+    /* Widen process texts on mobile by removing invisible lateral card padding */
+    .process .card {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* Hide desktop-only dash on mobile */
+    .desktop-dash {
+        display: none;
+    }
+    
+    /* Show mobile-only dash/comma on mobile */
+    .mobile-dash {
+        display: inline;
+    }
+    /* Hide desktop-only line breaks on mobile */
+    .desktop-br {
+        display: none;
+    }
+    .mobile-br {
+        display: block;
+    }
+    .navbar .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 70%;
+        background: var(--bg-dark);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 0 40px;
+        padding-top: 25%;
+        transition: 0.3s ease-in-out;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+
+    .navbar .nav-links > li {
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px 0;
+    }
+
+    /* No separator, and halved spacing between the two CTA buttons */
+    .navbar .nav-links > li:nth-last-child(1),
+    .navbar .nav-links > li:nth-last-child(2) {
+        border-bottom: none;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .navbar .nav-links > li > a {
+        display: inline-block;
+        width: 100%;
+    }
+
+    /* Keep button text centred */
+    .navbar .nav-links > li > a.btn {
+        text-align: center;
+    }
+
+    .navbar .nav-links a:not(.btn) {
+        font-size: 0.99rem;
+    }
+
+    /* Disable underline hover effect on mobile */
+    .navbar .nav-links a:not(.btn)::after {
+        display: none;
+    }
+
+    .navbar .nav-links .btn {
+        font-size: 1.08rem;
+    }
+
+    .navbar .nav-links.active {
+        right: 0;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+        z-index: 1000;
+    }
+
+    .mobile-menu-btn.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .mobile-menu-btn.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-btn.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    .hero {
+        padding: 140px 0 60px;
+    }
+
+    .col-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .difference-grid {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .competitors, .sonar {
+        width: 100%;
+        margin-left: 0;
+        border-radius: 24px;
+        padding: 40px 30px;
+    }
+
+    .cta-title {
+        font-size: 1.8rem; /* Reduced by 10% from 2rem */
+    }
+
+    .booking-title {
+        font-size: 2.25rem; /* Reduced by 10% from 2.5rem */
+    }
+}
+
+/* Split Layout for Ranking Services Section */
+.stacked-panels {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.panel-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 30px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    transition: all 0.3s ease;
+    text-align: left;
+    width: 100%;
+    max-width: 552px; /* Increased by 15% from 480px */
+}
+
+.panel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(17, 24, 39, 0.05);
+}
+
+.panel-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    color: var(--primary);
+}
+
+.panel-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.panel-content h3 {
+    margin-bottom: 10px;
+    font-size: 1.25rem;
+}
+
+.panel-content p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .panel-card {
+        padding: 24px;
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Interactive Heatmap Card Styling */
+.heatmap-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 1.8rem; /* Reduced to lower height */
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; /* Reduced primary gap */
+    margin-top: 0; /* Fully removed margin-top */
+    box-shadow: 0 10px 40px rgba(17, 24, 39, 0.05);
+    max-width: 890px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Toggle Switch Styling */
+.heatmap-toggle-wrapper {
+    margin-bottom: 1.35rem; /* Increased 5% */
+}
+
+.heatmap-toggle {
+    display: inline-flex;
+    background: #f3f4f6;
+    padding: 6px;
+    border-radius: 12px;
+    gap: 4px;
+}
+
+.toggle-btn {
+    padding: 8px 22px; /* Increased 5% */
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem; /* Increased 5% */
+    background: transparent;
+    color: var(--text-muted);
+}
+
+.toggle-btn.active {
+    background: #ffffff;
+    color: var(--navy);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Sidebar Metrics Styling */
+.heatmap-flex {
+    display: grid;
+    grid-template-columns: 320px 1fr; /* Fixed sidebar, expansive map */
+    gap: 3rem;
+    align-items: stretch; /* Forces image to match sidebar height exactly */
+}
+
+.heatmap-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+/* Toggle Switch Styling */
+.heatmap-toggle-wrapper {
+    margin-bottom: 0px; 
+}
+
+/* Business Card Mockup */
+.business-info {
+    background: #f9fbfd;
+    border: 1.2px solid var(--border-color);
+    border-radius: 14px;
+    padding: 0.9rem;
+    display: flex;
+    gap: 1.1rem;
+    align-items: center;
+    margin-bottom: 0.2rem;
+    text-align: left;
+}
+
+.business-icon {
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.business-details h4 {
+    font-family: var(--font-heading, 'Outfit', sans-serif);
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 1rem;
+    color: var(--navy);
+}
+
+.business-details p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0;
+}
+
+/* Metric Items */
+.metric-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border: 1.2px solid var(--border-color);
+    padding: 0.675rem 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.metric-label {
+    font-size: 0.85rem;
+    color: var(--navy);
+    font-weight: 600;
+}
+
+.metric-value.bubble {
+    padding: 6px 15px;
+    border-radius: 9px;
+    color: #fff;
+    min-width: 52px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+/* State Based Colors */
+.heatmap-container[data-state="before"] .metric-value.bubble {
+    background: #ef4444; 
+}
+
+.heatmap-container[data-state="after"] .metric-value.bubble {
+    background: #10b981;
+}
+
+/* Heatmap Display area */
+.heatmap-display {
+    position: relative;
+    background: #f8fafc; /* Defined background for the map frame */
+    border: 1.2px solid var(--border-color);
+    border-radius: 20px; /* Matching the overall card aesthetics */
+    overflow: hidden;
+    height: 100%; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px; /* Adding padding so the rounding of the inner map is clear */
+}
+
+.heatmap-img {
+    position: absolute;
+    width: calc(100% - 24px); /* Accounting for container padding */
+    height: calc(100% - 24px); /* Accounting for container padding */
+    object-fit: contain; 
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    border-radius: 16px; /* Ensuring the map content itself has rounded corners */
+}
+
+.heatmap-container[data-state="before"] .img-before,
+.heatmap-container[data-state="after"] .img-after {
+    opacity: 1;
+}
+
+@media (max-width: 1024px) {
+    .heatmap-flex {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .heatmap-display {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+@media (max-width: 768px) {
+    .heatmap-card {
+        padding: 1.5rem;
+    }
+    .heatmap-toggle-wrapper {
+        text-align: center;
+    }
+}
+
+/* Minimalist Form Styles - ProfResults Style */
+.booking-section {
+    padding: 140px 0 100px;
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: flex-start;
+    text-align: left;
+}
+
+/* Simple, flush-left alignment for booking pages */
+.booking-content {
+    text-align: left;
+    padding-left: 0;
+}
+
+.booking-title, 
+.booking-text,
+.eyebrow {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: none !important; /* Removes centering from 900px max-width */
+}
+
+@media (max-width: 768px) {
+    .booking-content,
+    .booking-title, 
+    .booking-text,
+    .eyebrow {
+        text-align: center !important;
+    }
+}
+
+.form-wrapper {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label:not(.radio-label) {
+    font-size: 1.1rem; /* Prominent question size */
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.booking-form input:not([type="radio"]),
+.booking-form textarea,
+.booking-form select {
+    width: 100%;
+    padding: 12px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--border-color);
+    border-radius: 0;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--primary);
+    transition: border-color 0.3s ease;
+}
+
+.booking-form input:focus,
+.booking-form textarea:focus,
+.booking-form input:focus-visible,
+.booking-form textarea:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-bottom: 1.5px solid #000000 !important; /* Not bold, just black */
+}
+
+.booking-form ::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+/* Radio Group Styling */
+.radio-group {
+    display: flex;
+    flex-direction: row; /* Aligned horizontally */
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 12px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem; /* Slightly smaller option size */
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+.radio-label:hover {
+    color: var(--primary);
+}
+
+.radio-label input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+}
+
+@media (max-width: 992px) {
+    .booking-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
