@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You For Subscribing | Sonar Marketing</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/Sonar Icon 1.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css?v=8">
+    <style>
+        .thanks-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            background: #ffffff;
+        }
+        .thanks-container {
+            max-width: 650px;
+            width: 100%;
+        }
+        .thanks-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 500;
+            line-height: 1.1;
+            color: #111827;
+            margin-bottom: 24px;
+        }
+        .thanks-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #4b5563;
+            margin-bottom: 12px;
+        }
+        .thanks-footer {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #4b5563; /* Changed to Gray to match above text */
+            margin-bottom: 48px;
+        }
+        .sonar-logo {
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+        .btn-return {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 48px;
+            background: #111827;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            border: 1.1px solid #111827;
+        }
+        .btn-return:hover {
+            background: transparent;
+            color: #111827;
+        }
+
+        @media (max-width: 640px) {
+            .thanks-section {
+                align-items: flex-start;
+                padding-top: 15vh;
+            }
+            .thanks-title {
+                font-size: 2.5rem;
+            }
+            .thanks-text, .thanks-footer {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thanks-section reveal">
+        <div class="thanks-container">
+            <a href="/" class="sonar-logo">
+                <img src="assets/images/Sonar Icon 1.svg" alt="Sonar Marketing" width="120">
+            </a>
+            <h1 class="thanks-title">Thank You For<br>Signing Up.</h1>
+            <p class="thanks-text">
+                Expect 3-5 emails per week filled with value<br>delivered directly to your inbox.
+            </p>
+            <div style="margin-bottom: 48px;"></div>
+            <a href="/" class="btn-return">Return to home</a>
+        </div>
+    </div>
+
+    <!-- Scroll observer for reveal effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
